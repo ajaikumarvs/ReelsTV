@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">ReelsTV</string>
+    <string name="no_results">No results found</string>
 </resources>

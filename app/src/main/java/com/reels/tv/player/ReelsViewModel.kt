@@ -1,5 +1,13 @@
+package com.reels.tv
+
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.launch
+
 class ReelsViewModel : ViewModel() {
-    private val reelsRepository: ReelsRepository by inject()
+    private val reelsRepository = ReelsRepository()
 
     private val _currentReel = MutableLiveData<Reel>()
     val currentReel: LiveData<Reel> = _currentReel

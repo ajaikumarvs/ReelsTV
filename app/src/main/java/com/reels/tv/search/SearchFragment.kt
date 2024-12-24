@@ -1,5 +1,15 @@
-class SearchFragment : androidx.leanback.app.SearchFragment(),
-    androidx.leanback.app.SearchFragment.SearchResultProvider {
+package com.reels.tv
+
+import android.os.Bundle
+import androidx.leanback.app.SearchSupportFragment
+import androidx.leanback.widget.ArrayObjectAdapter
+import androidx.leanback.widget.HeaderItem
+import androidx.leanback.widget.ListRow
+import androidx.leanback.widget.ListRowPresenter
+import androidx.leanback.widget.ObjectAdapter
+import androidx.fragment.app.viewModels
+
+class SearchFragment : SearchSupportFragment(), SearchSupportFragment.SearchResultProvider {
 
     private val searchViewModel: SearchViewModel by viewModels()
     private val rowsAdapter = ArrayObjectAdapter(ListRowPresenter())
@@ -15,9 +25,11 @@ class SearchFragment : androidx.leanback.app.SearchFragment(),
             rowsAdapter.clear()
 
             val listRowAdapter = ArrayObjectAdapter(ReelPresenter())
-            results.forEach { listRowAdapter.add(it) }
+            results.forEach { reel ->
+                listRowAdapter.add(reel)
+            }
 
-            val header = HeaderItem("Search Results")
+            val header = HeaderItem(0L, "Search Results")
             rowsAdapter.add(ListRow(header, listRowAdapter))
         }
     }
