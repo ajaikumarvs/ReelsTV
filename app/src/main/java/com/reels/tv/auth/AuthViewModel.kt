@@ -1,28 +1,10 @@
-package com.reels.tv.auth
+package com.reels.tv
 
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
-
-// First, define the AuthState sealed class
-sealed class AuthState {
-    data class Authenticated(val token: String) : AuthState()
-    data class RequiresAuth(val authUrl: String) : AuthState()
-    data class Error(val message: String) : AuthState()
-}
-
-// Create InstagramAuthService object
-object InstagramAuthService {
-    fun buildAuthUrl(clientId: String, redirectUri: String, scope: List<String>): String {
-        return "https://api.instagram.com/oauth/authorize" +
-                "?client_id=$clientId" +
-                "&redirect_uri=$redirectUri" +
-                "&scope=${scope.joinToString(",")}" +
-                "&response_type=code"
-    }
-}
 
 class AuthViewModel : ViewModel() {
     private val _authState = MutableLiveData<AuthState>()

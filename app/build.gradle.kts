@@ -19,7 +19,8 @@ android {
         versionCode = 1
         versionName = "1.0"
 
-
+        buildConfigField("String", "INSTAGRAM_CLIENT_ID", "\"your_client_id_here\"")
+        buildConfigField("String", "INSTAGRAM_REDIRECT_URI", "\"reelstv://oauth_callback\"")
     }
 
     buildTypes {
@@ -82,9 +83,26 @@ dependencies {
     implementation("androidx.fragment:fragment-ktx:1.6.2")
     implementation("androidx.activity:activity-ktx:1.8.2")
 
+    implementation("androidx.constraintlayout:constraintlayout:2.1.4")
+
+    // ExoPlayer
+    implementation("androidx.media3:media3-exoplayer:1.2.1")
+    implementation("androidx.media3:media3-ui:1.2.1")
+
+    // For DialogFragment
+    implementation("androidx.fragment:fragment-ktx:1.6.2")
+    implementation("androidx.appcompat:appcompat:1.6.1")
+
     androidTestImplementation(platform(libs.androidx.compose.bom))
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+
+    //extra
+    implementation("androidx.core:core-ktx:1.12.0")
+    implementation("androidx.fragment:fragment-ktx:1.6.2")
+    implementation("androidx.activity:activity-ktx:1.8.2")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.7.0")
+    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.7.0")
 
 }

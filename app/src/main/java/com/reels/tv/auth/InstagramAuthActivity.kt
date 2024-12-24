@@ -1,22 +1,24 @@
-package com.reels.tv.auth
+package com.reels.tv
 
 import android.os.Bundle
+import android.view.View
+import android.widget.Toast
 import androidx.fragment.app.FragmentActivity
 import androidx.activity.viewModels
 import android.content.Intent
-import android.widget.Toast
+import android.content.Context
 
 class InstagramAuthActivity : FragmentActivity() {
     private val authViewModel: AuthViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_auth)
+        setContentView(com.reels.tv.R.layout.activity_auth)
 
-        // Initialize Instagram OAuth
+        // Initialize Instagram OAuth using values from secrets.xml
         authViewModel.initializeAuth(
-            clientId = BuildConfig.INSTAGRAM_CLIENT_ID,
-            redirectUri = BuildConfig.INSTAGRAM_REDIRECT_URI,
+            clientId = getString(com.reels.tv.R.string.instagram_client_id),
+            redirectUri = getString(com.reels.tv.R.string.instagram_redirect_uri),
             scope = listOf("user_profile", "user_media")
         )
 
@@ -31,8 +33,8 @@ class InstagramAuthActivity : FragmentActivity() {
     }
 
     private fun navigateToMain() {
-        // Navigate to your main activity
-        startActivity(Intent(this, MainActivity::class.java))
+        val intent = Intent(this, MainActivity::class.java)
+        startActivity(intent)
         finish()
     }
 
